@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------
+1. Dependencies
+--------------------------------------------------------------------------
+Required:
+	DBMS Installation (Postgresql or Greenplum)
+
+Optional: (required for python interface)
+	Python 3.*
+	Psycopg2 
+
+--------------------------------------------------------------------------
+2. Load test data
+--------------------------------------------------------------------------
+Run each sql file in bismarck_data,
+	psql -f mlens1m.sql
+	psql -f dblife.sql
+	psql -f forest.sql
+	psql -f conll.sql
+
+--------------------------------------------------------------------------
+3. Test if Bismarck is running
+--------------------------------------------------------------------------
+Using SQL, check if the output loss value is decreasing and within correct
+range as is shown below after the first several epochs:
+	SELECT dense_logit('forest', 1, 54); 				-- (2.9e5, 4e5)
+	SELECT sparse_logit('dblife', 22, 41270);			-- (2.7e3, 4e3)
+
